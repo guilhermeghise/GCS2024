@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Parque parque = new Parque(); // Assumindo que você tem uma classe Parque que implementará as funcionalidades
-
+        Parque parque = new Parque(); 
         int opcao;
+        
         do {
             System.out.println("\n### Menu do Parque ###");
             System.out.println("1. Cadastrar novo visitante");
@@ -15,8 +15,8 @@ public class Main {
             System.out.println("5. Localizar visitante");
             System.out.println("6. Consultar faturamento de um mês/ano");
             System.out.println("7. Consultar atrações mais visitadas em uma data");
-            System.out.println("8. Função adicional 1");
-            System.out.println("9. Função adicional 2");
+            System.out.println("8. Atualizar Cadastro");
+            System.out.println("9. Excluir Cadastro");
             System.out.println("0. Sair");
 
             System.out.print("\nEscolha uma opção: ");
@@ -25,31 +25,31 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    // Método para cadastrar novo visitante
+                    parque.cadastrarNovoVisitante();
                     break;
                 case 2:
-                    // Método para listar visitantes cadastrados
+                    parque.listarVisitantesCadastrados();
                     break;
                 case 3:
-                    // Método para emitir novo ingresso
+                    parque.emitirNovoIngresso();
                     break;
                 case 4:
-                    // Método para registrar visita à atração
+                    parque.registrarVisitaAtracao();
                     break;
                 case 5:
-                    // Método para localizar visitante
+                    parque.localizarVisitante();
                     break;
                 case 6:
-                    // Método para consultar faturamento de um mês/ano
+                    parque.consultarFaturamento();
                     break;
                 case 7:
-                    // Método para consultar atrações mais visitadas em uma data
+                    parque.consultarAtracoesMaisVisitadas();
                     break;
                 case 8:
-                    // Implemente a primeira funcionalidade adicional
+                    parque.atualizarCadastro();
                     break;
                 case 9:
-                    // Implemente a segunda funcionalidade adicional
+                    parque.excluirCadastro();
                     break;
                 case 0:
                     System.out.println("Saindo do sistema...");

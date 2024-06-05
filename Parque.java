@@ -1,17 +1,17 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Parque {
     private List<Visitante> visitantes;
+    private Map<String, Integer> ingressosPorDia;
+    private Map<Visitante, List<String>> visitasPorVisitante;
     private SimpleDateFormat dateFormat;
 
     public Parque() {
         this.visitantes = new ArrayList<>();
+        this.ingressosPorDia = new HashMap<>();
+        this.visitasPorVisitante = new HashMap<>();
         this.dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         this.dateFormat.setLenient(false);
     }
@@ -72,25 +72,89 @@ public class Parque {
     }
 
     public void emitirNovoIngresso() {
-        System.out.println("Método para emitir novo ingresso. Implementação futura.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite a data para o ingresso (dd/MM/yyyy): ");
+        String dataStr = scanner.nextLine();
+        Date data;
+        try {
+            data = dateFormat.parse(dataStr);
+        } catch (ParseException e) {
+            System.out.println("Data inválida. Use o formato dd/MM/yyyy.");
+            return;
+        }
+
+        String dataFormatada = dateFormat.format(data);
+        int ingressosEmitidos = ingressosPorDia.getOrDefault(dataFormatada, 0);
+        if (ingressosEmitidos >= 500) {
+            System.out.println("Limite de 500 ingressos atingido para a data: " + dataFormatada);
+            return;
+        }
+
+        System.out.print("Digite o nome do visitante: ");
+        String nomeVisitante = scanner.nextLine();
+        Visitante visitante = encontrarVisitantePorNome(nomeVisitante);
+        if (visitante == null) {
+            System.out.println("Visitante não encontrado.");
+            return;
+        }
+
+        ingressosEmitidos++;
+        ingressosPorDia.put(dataFormatada, ingressosEmitidos);
+        System.out.println("Ingresso emitido com sucesso para " + nomeVisitante + " na data: " + dataFormatada);
     }
 
     public void registrarVisitaAtracao() {
-        System.out.println("Método para registrar visita à atração. Implementação futura.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite o nome do visitante: ");
+        String nomeVisitante = scanner.nextLine();
+        Visitante visitante = encontrarVisitantePorNome(nomeVisitante);
+        if (visitante == null) {
+            System.out.println("Visitante não encontrado.");
+            return;
+        }
+
+        System.out.print("Digite a atração visitada: ");
+        String atracao = scanner.nextLine();
+
+        visitasPorVisitante.computeIfAbsent(visitante, k -> new ArrayList<>()).add(atracao);
+        System.out.println("Visita registrada com sucesso para a atração: " + atracao);
+    }
+
+    private Visitante encontrarVisitantePorNome(String nome) {
+        for (Visitante visitante : visitantes) {
+            if (visitante.getNome().equalsIgnoreCase(nome)) {
+                return visitante;
+            }
+        }
+        return null;
     }
 
     public void localizarVisitante() {
-        System.out.println("Método para localizar visitante. Implementação futura.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite o nome do visitante: ");
+        String nomeVisitante = scanner.nextLine();
+
+        boolean encontrado = false;
+        for (Visitante visitante : visitantes) {
+            if (visitante.getNome().equalsIgnoreCase(nomeVisitante)) {
+                System.out.println("Visitante encontrado:");
+                System.out.println(visitante);
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("Visitante não encontrado.");
+        }
     }
 
     public void consultarFaturamento() {
-        //6. Consultar faturamento de um mês/ano
-        double soma=0;
-        for(Visitante v: visitantes){
-            soma+=v.calculaIngresso();
+        double soma = 0;
+        for (Visitante v : visitantes) {
+            soma += v.calculaIngresso();
         }
-        System.out.println("faturamento referente ao total de ingressos:" + soma);
-        //se quiser, precisa filtrar o valor total referente aos meses ou o ano
+        System.out.println("Faturamento referente ao total de ingressos: " + soma);
     }
 
     public void consultarAtracoesMaisVisitadas() {

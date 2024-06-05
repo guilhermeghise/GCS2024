@@ -158,7 +158,39 @@ public class Parque {
     }
 
     public void consultarAtracoesMaisVisitadas() {
-        System.out.println("Método para consultar atrações mais visitadas. Implementação futura.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite a data para consulta (dd/MM/yyyy): ");
+        String dataStr = scanner.nextLine();
+        Date data;
+        try {
+            data = dateFormat.parse(dataStr);
+        } catch (ParseException e) {
+            System.out.println("Data inválida. Use o formato dd/MM/yyyy.");
+            return;
+        }
+
+        String dataFormatada = dateFormat.format(data);
+        Map<String, Integer> atracoesContagem = new HashMap<>();
+
+        for (Map.Entry<Visitante, List<String>> entrada : visitasPorVisitante.entrySet()) {
+            List<String> visitas = entrada.getValue();
+            for (String visita : visitas) {
+                atracoesContagem.put(visita, atracoesContagem.getOrDefault(visita, 0) + 1);
+            }
+        }
+
+        if (atracoesContagem.isEmpty()) {
+            System.out.println("Nenhuma visita registrada na data: " + dataFormatada);
+            return;
+        }
+
+        int maxVisitas = Collections.max(atracoesContagem.values());
+        System.out.println("Atrações mais visitadas na data " + dataFormatada + ":");
+        for (Map.Entry<String, Integer> entry : atracoesContagem.entrySet()) {
+            if (entry.getValue() == maxVisitas) {
+                System.out.println("Atração: " + entry.getKey() + " - Visitas: " + entry.getValue());
+            }
+        }
     }
 
     public void atualizarCadastro() {

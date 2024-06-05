@@ -21,13 +21,6 @@ public class VisitanteAdulto extends Visitante {
 
     @Override
     public double calculaIngresso() {
-        if ((2024 - getAnoNascimento()) <= 18) {
-            return 15.00;
-        } else if ((2024 - getAnoNascimento()) > 18 && (2024 - getAnoNascimento()) <= 59) {
-            return 25.00;
-        } else if(((2024 - getAnoNascimento()) >= 60)){
-            return 5.00;
-        }
-        return 0;
+        return 100.00;
     }
 }

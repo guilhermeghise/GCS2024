@@ -25,7 +25,7 @@ public abstract class Visitante {
 
     @Override
     public String toString() {
-        return "Nome: " + nome + ", Ano de Nascimento: " + anoNascimento;
+        return " " + nome + ", Ano de Nascimento: " + anoNascimento;
     }
 
     public abstract double calculaIngresso();

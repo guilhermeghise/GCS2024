@@ -1,17 +1,18 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Parque {
     private List<Visitante> visitantes;
+    private List<Ingresso> ingressos;
+    private int contIngressos;
     private SimpleDateFormat dateFormat;
+
 
     public Parque() {
         this.visitantes = new ArrayList<>();
+        this.ingressos = new ArrayList<>();
+        this.contIngressos = 0;
         this.dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         this.dateFormat.setLenient(false);
     }
@@ -72,7 +73,46 @@ public class Parque {
     }
 
     public void emitirNovoIngresso() {
-        System.out.println("Método para emitir novo ingresso. Implementação futura.");
+
+            Scanner in = new Scanner(System.in);
+            System.out.print("Data do ingresso (dd/MM/yyyy): ");
+            String dataStr = in.nextLine();
+            Date data = null;
+            try {
+                data = dateFormat.parse(dataStr);
+            } catch (ParseException e) {
+                System.out.println("Formato de data inválido.");
+                return;
+            }
+
+            String dataFormatada = dateFormat.format(data);
+            int contadorIngressos = contIngressos;
+            if (contadorIngressos >= 500) {
+                System.out.println("Limite de 500 ingressos por dia atingido.");
+                return;
+            }
+
+            System.out.print("Nome do visitante: ");
+            String nomeVisitante = in.nextLine();
+            Visitante visitante = localizarVisitantePorNome(nomeVisitante);
+            if (visitante == null) {
+                System.out.println("Visitante não encontrado.");
+                return;
+            }
+
+        contIngressos++;
+        String chave = dataFormatada + " seq " + String.format("%03d", contadorIngressos);
+        Ingresso ingresso = new Ingresso(chave, data, visitante);
+        ingressos.add(ingresso);
+        System.out.println("Ingresso emitido: " + ingresso);
+    }
+    public Visitante localizarVisitantePorNome(String nome) {
+        for (Visitante visitante : visitantes) {
+            if (visitante.getNome().equalsIgnoreCase(nome)) {
+                return visitante;
+            }
+        }
+        return null;
     }
 
     public void registrarVisitaAtracao() {
@@ -80,6 +120,7 @@ public class Parque {
     }
 
     public void localizarVisitante() {
+
         System.out.println("Método para localizar visitante. Implementação futura.");
     }
 
@@ -89,7 +130,7 @@ public class Parque {
         for(Visitante v: visitantes){
             soma+=v.calculaIngresso();
         }
-        System.out.println("faturamento referente ao total de ingressos:" + soma);
+        System.out.println("faturamento referente ao total de ingressos: R$" + soma);
         //se quiser, precisa filtrar o valor total referente aos meses ou o ano
     }
 
@@ -159,5 +200,15 @@ public class Parque {
         if (!removido) {
             System.out.println("Visitante não encontrado.");
         }
+    }
+
+
+
+
+
+
+    //método criado para instanciar manualmente dentro do código.
+    public void adicionarVisitante(Visitante visitante) {
+        visitantes.add(visitante);
     }
 }

@@ -5,7 +5,19 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Parque parque = new Parque(); 
         int opcao;
-        
+
+        //Instanciados para inicializar com alguns dados prontos.
+        VisitanteAdulto adulto1 = new VisitanteAdulto("Gertrudes", 1980, "9090-9090");
+        VisitanteAdulto adulto2 = new VisitanteAdulto("Robson", 1995, "4321-8765");
+        VisitanteCrianca crianca1 = new VisitanteCrianca("Roberval", 2017, "Madalena", "2222-3333");
+        VisitanteCrianca crianca2 = new VisitanteCrianca("Edson", 2015, "Murila", "1234-5678");
+
+        parque.adicionarVisitante(adulto1);
+        parque.adicionarVisitante(adulto2);
+        parque.adicionarVisitante(crianca1);
+        parque.adicionarVisitante(crianca2);
+
+
         do {
             System.out.println("\n### Menu do Parque ###");
             System.out.println("1. Cadastrar novo visitante");

@@ -1,3 +1,5 @@
+package dados;
+
 public class VisitanteAdulto extends Visitante {
     private String telefone;
 

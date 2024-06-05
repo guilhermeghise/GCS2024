@@ -84,7 +84,13 @@ public class Parque {
     }
 
     public void consultarFaturamento() {
-        System.out.println("Método para consultar faturamento. Implementação futura.");
+        //6. Consultar faturamento de um mês/ano
+        double soma=0;
+        for(Visitante v: visitantes){
+            soma+=v.calculaIngresso();
+        }
+        System.out.println("faturamento referente ao total de ingressos:" + soma);
+        //se quiser, precisa filtrar o valor total referente aos meses ou o ano
     }
 
     public void consultarAtracoesMaisVisitadas() {

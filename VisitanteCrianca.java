@@ -28,4 +28,9 @@ public class VisitanteCrianca extends Visitante {
     public String toString() {
         return super.toString() + ", Nome do Responsável: " + nomeResponsavel + ", Telefone do Responsável: " + telefoneResponsavel;
     }
+
+    @Override
+    public double calculaIngresso() {
+        return 5.00;
+    }
 }

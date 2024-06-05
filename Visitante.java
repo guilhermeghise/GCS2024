@@ -1,4 +1,4 @@
-class Visitante {
+public abstract class Visitante {
     private String nome;
     private int anoNascimento;
 
@@ -27,6 +27,7 @@ class Visitante {
     public String toString() {
         return "Nome: " + nome + ", Ano de Nascimento: " + anoNascimento;
     }
+
+    public abstract double calculaIngresso();
+
 }
-
-

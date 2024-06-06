@@ -6,13 +6,21 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * Representa o sistema de gerenciamento de um parque de diversões.
+ */
+
 public class Parque {
-    private List<Visitante> visitantes;
-    private List<Ingresso> ingressos;
-    private int contIngressos;
-    private SimpleDateFormat dateFormat;
-    private Map<String, Map<String, Integer>> visitasPorData;
-    private List<String> atracoesCadastradas;
+    private List<Visitante> visitantes;  // Lista de visitantes cadastrados no parque
+    private List<Ingresso> ingressos; // Lista de ingressos emitidos
+    private int contIngressos; // Contador de ingressos emitidos para controlar a quantidade por dia
+    private SimpleDateFormat dateFormat; // Formato de data para análise e formatação
+    private Map<String, Map<String, Integer>> visitasPorData; // Registro de visitas por data e atração
+    private List<String> atracoesCadastradas; // Lista de atrações disponíveis no parque
+
+    /**
+     * Construtor padrão para inicializar as estruturas de dados e formatador de data.
+     */
 
     public Parque() {
         this.visitantes = new ArrayList<>();

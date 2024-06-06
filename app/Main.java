@@ -4,13 +4,17 @@ import dados.*;
 
 import java.util.Scanner;
 
+/**
+ * Classe principal que contém o método main para executar o aplicativo do Parque.
+ */
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Parque parque = new Parque(); 
-        int opcao;
+        Parque parque = new Parque(); // Instância da classe Parque para gerenciar os visitantes e atrações do parque.
+        int opcao; // Variável para armazenar a opção selecionada pelo usuário no menu.
 
-        //Instanciados para inicializar com alguns dados prontos.
+        // Instanciados para inicializar com alguns dados prontos.
         VisitanteAdulto adulto1 = new VisitanteAdulto("Renato Gaucho", 1980, "9090-9090");
         VisitanteAdulto adulto2 = new VisitanteAdulto("Robson", 1995, "4321-8765");
         VisitanteAdulto adulto3 = new VisitanteAdulto("Cleiton", 1969, "3030-3520");
@@ -47,9 +51,10 @@ public class Main {
             System.out.println("0. Sair");
 
             System.out.print("\nEscolha uma opção: ");
-            opcao = scanner.nextInt();
+            opcao = scanner.nextInt(); // Captura a opção selecionada pelo usuário.
             scanner.nextLine(); // Limpar o buffer do scanner
 
+            // Switch case para realizar ações com base na opção selecionada.
             switch (opcao) {
                 case 1:
                     parque.cadastrarNovoVisitante();
@@ -86,6 +91,6 @@ public class Main {
             }
         } while (opcao != 0);
 
-        scanner.close();
+        scanner.close(); // Fechando o scanner para liberar recursos.
     }
 }

@@ -5,7 +5,8 @@ import dados.*;
 import java.util.Scanner;
 
 /**
- * Classe principal que contém o método main para executar o aplicativo do Parque.
+ * Classe principal que contém o método main para executar o aplicativo do
+ * Parque.
  */
 
 public class Main {
@@ -35,7 +36,6 @@ public class Main {
         parque.adicionarVisitante(crianca3);
         parque.adicionarVisitante(crianca4);
         parque.adicionarVisitante(crianca5);
-
 
         do {
             System.out.println("\n### Menu do app.Parque ###");
@@ -68,11 +68,11 @@ public class Main {
                 case 4:
                     parque.registrarVisitaAtracao();
                     break;
-                case 5:
-                   //  parque.localizarVisitante();
+                    case 5:
+                    parque.localizarVisitantePorNome();
                     break;
                 case 6:
-                  //   parque.consultarFaturamento();
+                    // parque.consultarFaturamento();
                     break;
                 case 7:
                     parque.consultarAtracoesMaisVisitadas();

@@ -141,12 +141,8 @@ public class Parque {
     public void emitirNovoIngresso() {
         Scanner scanner = new Scanner(System.in);
     
-        // Solicitar o nome do visitante
-        System.out.print("Nome do visitante: ");
-        String nomeVisitante = scanner.nextLine();
-    
         // Verificar se o visitante está cadastrado
-        Visitante visitante = localizarVisitantePorNome(nomeVisitante);
+        Visitante visitante = localizarVisitantePorNome();
         if (visitante == null) {
             System.out.println("Visitante não cadastrado.");
     
@@ -187,79 +183,85 @@ public class Parque {
         System.out.println("Ingresso emitido com sucesso: " + ingresso);
     }
 
-    public Visitante localizarVisitantePorNome(String nome) {
+    public Visitante localizarVisitantePorNome() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite o nome do visitante: ");
+        String nome = scanner.nextLine();
+        
         for (Visitante visitante : visitantes) {
-            if (visitante.getNome().equalsIgnoreCase(nome)) {
+            String nomeVisitante = visitante.getNome();
+            if (nomeVisitante != null && nomeVisitante.trim().equalsIgnoreCase(nome.trim())) {
+                System.out.println("Visitante encontrado: " + visitante);
                 return visitante;
             }
         }
+        
+        System.out.println("Visitante não encontrado.");
         return null;
     }
 
     public void registrarVisitaAtracao() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Digite a data da visita (dd/MM/yyyy): ");
-        String dataStr = scanner.nextLine();
-        Date data;
-        try {
-            data = dateFormat.parse(dataStr);
-        } catch (ParseException e) {
-            System.out.println("Data inválida. Use o formato dd/MM/yyyy.");
-            return;
-        }
-    
-        String dataFormatada = dateFormat.format(data);
-        System.out.print("Digite o nome do visitante: ");
-        String nomeVisitante = scanner.nextLine();
-        Visitante visitante = localizarVisitantePorNome(nomeVisitante);
-        if (visitante == null) {
-            System.out.println("Visitante não encontrado.");
-            return;
-        }
-    
-        // Verifica se há um ingresso para o visitante na data especificada
-        boolean ingressoEncontrado = false;
-        for (Ingresso ingresso : ingressos) {
-            if (ingresso.getVisitante().equals(visitante)
-                    && dateFormat.format(ingresso.getData()).equals(dataFormatada)) {
-                ingressoEncontrado = true;
-                break;
-            }
-        }
-    
-        if (!ingressoEncontrado) {
-            System.out.println("Não há ingresso válido para o visitante na data especificada.");
-            return;
-        }
-    
-        System.out.println("Atrações disponíveis:");
-        for (int i = 0; i < atracoesCadastradas.size(); i++) {
-            System.out.println((i + 1) + ". " + atracoesCadastradas.get(i));
-        }
-    
-        int opcaoAtracao;
-        do {
-            System.out.print("Digite o número da atração visitada: ");
-            while (!scanner.hasNextInt()) {
-                System.out.println("Por favor, digite um número válido.");
-                scanner.next(); // Limpar o buffer
-            }
-            opcaoAtracao = scanner.nextInt();
-            scanner.nextLine(); // Limpar o buffer
-    
-            if (opcaoAtracao < 1 || opcaoAtracao > atracoesCadastradas.size()) {
-                System.out.println("Número de atração inválido. Escolha uma das opções listadas.");
-            }
-        } while (opcaoAtracao < 1 || opcaoAtracao > atracoesCadastradas.size());
-    
-        String atracao = atracoesCadastradas.get(opcaoAtracao - 1);
-    
-        visitasPorData.putIfAbsent(dataFormatada, new HashMap<>());
-        Map<String, Integer> visitasNaData = visitasPorData.get(dataFormatada);
-        visitasNaData.put(atracao, visitasNaData.getOrDefault(atracao, 0) + 1);
-    
-        System.out.println("Visita registrada com sucesso.");
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Digite a data da visita (dd/MM/yyyy): ");
+    String dataStr = scanner.nextLine();
+    Date data;
+    try {
+        data = dateFormat.parse(dataStr);
+    } catch (ParseException e) {
+        System.out.println("Data inválida. Use o formato dd/MM/yyyy.");
+        return;
     }
+
+    String dataFormatada = dateFormat.format(data);
+    Visitante visitante = localizarVisitantePorNome();
+    if (visitante == null) {
+        System.out.println("Visitante não encontrado.");
+        return;
+    }
+
+    // Verifica se há um ingresso para o visitante na data especificada
+    boolean ingressoEncontrado = false;
+    for (Ingresso ingresso : ingressos) {
+        if (ingresso.getVisitante().equals(visitante)
+                && dateFormat.format(ingresso.getData()).equals(dataFormatada)) {
+            ingressoEncontrado = true;
+            break;
+        }
+    }
+
+    if (!ingressoEncontrado) {
+        System.out.println("Não há ingresso válido para o visitante na data especificada.");
+        return;
+    }
+
+    System.out.println("Atrações disponíveis:");
+    for (int i = 0; i < atracoesCadastradas.size(); i++) {
+        System.out.println((i + 1) + ". " + atracoesCadastradas.get(i));
+    }
+
+    int opcaoAtracao;
+    do {
+        System.out.print("Digite o número da atração visitada: ");
+        while (!scanner.hasNextInt()) {
+            System.out.println("Por favor, digite um número válido.");
+            scanner.next(); // Limpar o buffer
+        }
+        opcaoAtracao = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer
+
+        if (opcaoAtracao < 1 || opcaoAtracao > atracoesCadastradas.size()) {
+            System.out.println("Número de atração inválido. Escolha uma das opções listadas.");
+        }
+    } while (opcaoAtracao < 1 || opcaoAtracao > atracoesCadastradas.size());
+
+    String atracao = atracoesCadastradas.get(opcaoAtracao - 1);
+
+    visitasPorData.putIfAbsent(dataFormatada, new HashMap<>());
+    Map<String, Integer> visitasNaData = visitasPorData.get(dataFormatada);
+    visitasNaData.put(atracao, visitasNaData.getOrDefault(atracao, 0) + 1);
+
+    System.out.println("Visita registrada com sucesso.");
+}
 
     public void consultarAtracoesMaisVisitadas() {
         Scanner scanner = new Scanner(System.in);

@@ -180,16 +180,9 @@ public class Parque {
         }
 
         String dataFormatada = dateFormat.format(data);
-        Map<String, Integer> atracoesContagem = new HashMap<>();
+        Map<String, Integer> atracoesContagem = visitasPorData.get(dataFormatada);
 
-        for (Map.Entry<Visitante, List<String>> entrada : visitasPorVisitante.entrySet()) {
-            List<String> visitas = entrada.getValue();
-            for (String visita : visitas) {
-                atracoesContagem.put(visita, atracoesContagem.getOrDefault(visita, 0) + 1);
-            }
-        }
-
-        if (atracoesContagem.isEmpty()) {
+        if (atracoesContagem == null || atracoesContagem.isEmpty()) {
             System.out.println("Nenhuma visita registrada na data: " + dataFormatada);
             return;
         }

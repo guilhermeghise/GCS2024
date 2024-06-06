@@ -48,6 +48,7 @@ public class Main {
             System.out.println("7. Consultar atrações mais visitadas em uma data");
             System.out.println("8. Atualizar Cadastro");
             System.out.println("9. Excluir Cadastro");
+            System.out.println("10. Consultar visitantes em um período");
             System.out.println("0. Sair");
 
             System.out.print("\nEscolha uma opção: ");
@@ -82,6 +83,9 @@ public class Main {
                     break;
                 case 9:
                     parque.excluirCadastro();
+                    break;
+                case 10:
+                    parque.consultarVisitantesEmUmPeriodo();
                     break;
                 case 0:
                     System.out.println("Saindo do sistema...");

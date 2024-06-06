@@ -66,6 +66,71 @@ public class Parque {
         adicionarVisitante(crianca5);
     }
 
+    public void executar() {
+        int opcao;
+
+        do {
+            System.out.println("\n### Menu do app.Parque ###");
+            System.out.println("1. Cadastrar novo visitante");
+            System.out.println("2. Listar visitantes cadastrados");
+            System.out.println("3. Emitir novo ingresso");
+            System.out.println("4. Registrar visita à atração");
+            System.out.println("5. Localizar visitante");
+            System.out.println("6. Consultar faturamento de um mês/ano");
+            System.out.println("7. Consultar atrações mais visitadas em uma data");
+            System.out.println("8. Atualizar Cadastro");
+            System.out.println("9. Excluir Cadastro");
+            System.out.println("10. Consultar visitantes em um período");
+            System.out.println("11. Consultar quantos ingressos tem disponíveis em uma determinada data");
+            System.out.println("0. Sair");
+
+            System.out.print("\nEscolha uma opção: ");
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    cadastrarNovoVisitante();
+                    break;
+                case 2:
+                    listarVisitantesCadastrados();
+                    break;
+                case 3:
+                    emitirNovoIngresso();
+                    break;
+                case 4:
+                    registrarVisitaAtracao();
+                    break;
+                case 5:
+                    localizarVisitantePorNome();
+                    break;
+                case 6:
+                    // Método de consultar faturamento (a ser implementado)
+                    break;
+                case 7:
+                    consultarAtracoesMaisVisitadas();
+                    break;
+                case 8:
+                    atualizarCadastro();
+                    break;
+                case 9:
+                    excluirCadastro();
+                    break;
+                case 10:
+                    consultarVisitantesEmUmPeriodo();
+                    break;
+                case 11:
+                    ingressosDisponiveisPorData();
+                    break;
+                case 0:
+                    System.out.println("Saindo do sistema...");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
+            }
+        } while (opcao != 0);
+    }
+
     public void cadastrarNovoVisitante() {
         Scanner scanner = new Scanner(System.in);
         int tipo;

@@ -46,6 +46,7 @@ public class Main {
             System.out.println("8. Atualizar Cadastro");
             System.out.println("9. Excluir Cadastro");
             System.out.println("10. Consultar visitantes em um período");
+            System.out.println("11. Consultar quantos ingressos tem disponíveis em uma determinada data");
             System.out.println("0. Sair");
 
             System.out.print("\nEscolha uma opção: ");
@@ -84,6 +85,8 @@ public class Main {
                 case 10:
                     parque.consultarVisitantesEmUmPeriodo();
                     break;
+                case 11:
+                    parque.ingressosDisponiveisPorData();
                 case 0:
                     System.out.println("Saindo do sistema...");
                     break;

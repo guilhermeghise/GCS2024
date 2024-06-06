@@ -409,9 +409,41 @@ public class Parque {
             }
         }
     }
-    
     // método criado para instanciar manualmente dentro do código.
     public void adicionarVisitante(Visitante visitante) {
         visitantes.add(visitante);
+    }
+
+    //método criado para mostrar quantos ingressos tem dispovíveis em uma determinada data
+    public void ingressosDisponiveisPorData() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite a data que deseja pesquisar a quantidade de ingressos (dd/MM/yyyy): ");
+        String dataInicialStr = scanner.nextLine();
+        Date dataInicial;
+
+        try {
+            dataInicial = dateFormat.parse(dataInicialStr);
+        } catch (ParseException e) {
+            System.out.println("Data inválida! Digite novamente, no formato dd/MM/yyyy.");
+            return;
+        }
+
+        // Formatar a data para string no formato "dd/MM/yyyy"
+        String dataFormatada = dateFormat.format(dataInicial);
+
+        // Contar o número de ingressos emitidos para a data especificada
+        int ingressosEmitidos = 0;
+        for (Ingresso ingresso : ingressos) {
+            if (dateFormat.format(ingresso.getData()).equals(dataFormatada)) {
+                ingressosEmitidos++;
+            }
+        }
+
+        // Calcular a quantidade de ingressos disponíveis
+        int ingressosDisponiveis = 500 - ingressosEmitidos;
+
+        System.out.println("Data: " + dataFormatada);
+        System.out.println("Ingressos emitidos: " + ingressosEmitidos);
+        System.out.println("Ingressos disponíveis: " + ingressosDisponiveis);
     }
 }

@@ -3,7 +3,6 @@ package dados;
 import java.util.Date;
 
 public class Ingresso {
-
     private String identificador;
     private Date data;
     private Visitante visitante;

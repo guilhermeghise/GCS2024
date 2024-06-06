@@ -1,3 +1,7 @@
+package app;
+
+import dados.*;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -19,7 +23,7 @@ public class Parque {
 
     public void cadastrarNovoVisitante() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Cadastrar Novo Visitante:");
+        System.out.println("Cadastrar Novo dados.Visitante:");
         System.out.print("1. Adulto\n2. Criança\nEscolha o tipo de visitante: ");
         int tipo = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer
@@ -96,7 +100,7 @@ public class Parque {
             String nomeVisitante = in.nextLine();
             Visitante visitante = localizarVisitantePorNome(nomeVisitante);
             if (visitante == null) {
-                System.out.println("Visitante não encontrado.");
+                System.out.println("dados.Visitante não encontrado.");
                 return;
             }
 
@@ -104,7 +108,7 @@ public class Parque {
         String chave = dataFormatada + " seq " + String.format("%03d", contadorIngressos);
         Ingresso ingresso = new Ingresso(chave, data, visitante);
         ingressos.add(ingresso);
-        System.out.println("Ingresso emitido: " + ingresso);
+        System.out.println("dados.Ingresso emitido: " + ingresso);
     }
     public Visitante localizarVisitantePorNome(String nome) {
         for (Visitante visitante : visitantes) {
@@ -178,7 +182,7 @@ public class Parque {
         }
 
         if (!encontrado) {
-            System.out.println("Visitante não encontrado.");
+            System.out.println("dados.Visitante não encontrado.");
         }
     }
 
@@ -192,13 +196,13 @@ public class Parque {
             if (visitante.getNome().equalsIgnoreCase(nomeVisitante)) {
                 visitantes.remove(visitante);
                 removido = true;
-                System.out.println("Visitante removido com sucesso!");
+                System.out.println("dados.Visitante removido com sucesso!");
                 break;
             }
         }
 
         if (!removido) {
-            System.out.println("Visitante não encontrado.");
+            System.out.println("dados.Visitante não encontrado.");
         }
     }
 

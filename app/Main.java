@@ -1,3 +1,7 @@
+package app;
+
+import dados.*;
+
 import java.util.Scanner;
 
 public class Main {
@@ -7,19 +11,30 @@ public class Main {
         int opcao;
 
         //Instanciados para inicializar com alguns dados prontos.
-        VisitanteAdulto adulto1 = new VisitanteAdulto("Gertrudes", 1980, "9090-9090");
+        VisitanteAdulto adulto1 = new VisitanteAdulto("Renato Gaucho", 1980, "9090-9090");
         VisitanteAdulto adulto2 = new VisitanteAdulto("Robson", 1995, "4321-8765");
-        VisitanteCrianca crianca1 = new VisitanteCrianca("Roberval", 2017, "Madalena", "2222-3333");
-        VisitanteCrianca crianca2 = new VisitanteCrianca("Edson", 2015, "Murila", "1234-5678");
-
+        VisitanteAdulto adulto3 = new VisitanteAdulto("Cleiton", 1969, "3030-3520");
+        VisitanteAdulto adulto4 = new VisitanteAdulto("Roberval", 1914, "2828-3838");
+        VisitanteAdulto adulto5 = new VisitanteAdulto("Messi", 1914, "2828-3838");
+        VisitanteCrianca crianca1 = new VisitanteCrianca("Juninho", 2017, "Dorival Junior", "2222-3333");
+        VisitanteCrianca crianca2 = new VisitanteCrianca("Neymarzinho", 2015, "Renato Gaucho", "1234-5678");
+        VisitanteCrianca crianca3 = new VisitanteCrianca("Martinha", 2020, "Jerimundo", "5628-7568");
+        VisitanteCrianca crianca4 = new VisitanteCrianca("Ronaldinho", 2007, "Tite", "2755-2758");
+        VisitanteCrianca crianca5 = new VisitanteCrianca("Zidaninho", 2009, "Andrea Pirlo", "2858-6675");
         parque.adicionarVisitante(adulto1);
         parque.adicionarVisitante(adulto2);
+        parque.adicionarVisitante(adulto3);
+        parque.adicionarVisitante(adulto4);
+        parque.adicionarVisitante(adulto5);
         parque.adicionarVisitante(crianca1);
         parque.adicionarVisitante(crianca2);
+        parque.adicionarVisitante(crianca3);
+        parque.adicionarVisitante(crianca4);
+        parque.adicionarVisitante(crianca5);
 
 
         do {
-            System.out.println("\n### Menu do Parque ###");
+            System.out.println("\n### Menu do app.Parque ###");
             System.out.println("1. Cadastrar novo visitante");
             System.out.println("2. Listar visitantes cadastrados");
             System.out.println("3. Emitir novo ingresso");

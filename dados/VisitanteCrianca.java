@@ -1,3 +1,5 @@
+package dados;
+
 public class VisitanteCrianca extends Visitante {
     private String nomeResponsavel;
     private String telefoneResponsavel;

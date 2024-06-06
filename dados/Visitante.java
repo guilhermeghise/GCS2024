@@ -1,3 +1,5 @@
+package dados;
+
 public abstract class Visitante {
     private String nome;
     private int anoNascimento;

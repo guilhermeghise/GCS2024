@@ -1,4 +1,5 @@
-import java.text.SimpleDateFormat;
+package dados;
+
 import java.util.Date;
 
 public class Ingresso {
@@ -27,6 +28,6 @@ public class Ingresso {
 
     @Override
     public String toString() {
-            return "Chave: '"+identificador+'\''+", Visitante "+visitante;
+            return "Chave: '"+identificador+'\''+"Visitante "+visitante;
     }
 }

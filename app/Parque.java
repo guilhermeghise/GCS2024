@@ -11,6 +11,7 @@ public class Parque {
     private List<Ingresso> ingressos;
     private int contIngressos;
     private SimpleDateFormat dateFormat;
+    private Map<String, Map<String, Integer>> visitasPorData;
 
 
     public Parque() {
@@ -19,6 +20,7 @@ public class Parque {
         this.contIngressos = 0;
         this.dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         this.dateFormat.setLenient(false);
+        this.visitasPorData = new HashMap<>();
     }
 
     public void cadastrarNovoVisitante() {
@@ -120,7 +122,34 @@ public class Parque {
     }
 
     public void registrarVisitaAtracao() {
-        System.out.println("Método para registrar visita à atração. Implementação futura.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite a data da visita (dd/MM/yyyy): ");
+        String dataStr = scanner.nextLine();
+        Date data;
+        try {
+            data = dateFormat.parse(dataStr);
+        } catch (ParseException e) {
+            System.out.println("Data inválida. Use o formato dd/MM/yyyy.");
+            return;
+        }
+
+        String dataFormatada = dateFormat.format(data);
+        System.out.print("Digite o nome do visitante: ");
+        String nomeVisitante = scanner.nextLine();
+        Visitante visitante = localizarVisitantePorNome(nomeVisitante);
+        if (visitante == null) {
+            System.out.println("Visitante não encontrado.");
+            return;
+        }
+
+        System.out.print("Digite o nome da atração visitada: ");
+        String atracao = scanner.nextLine();
+
+        visitasPorData.putIfAbsent(dataFormatada, new HashMap<>());
+        Map<String, Integer> visitasNaData = visitasPorData.get(dataFormatada);
+        visitasNaData.put(atracao, visitasNaData.getOrDefault(atracao, 0) + 1);
+
+        System.out.println("Visita registrada com sucesso.");
     }
 
     public void localizarVisitante() {
@@ -139,7 +168,32 @@ public class Parque {
     }
 
     public void consultarAtracoesMaisVisitadas() {
-        System.out.println("Método para consultar atrações mais visitadas. Implementação futura.");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite a data para consulta (dd/MM/yyyy): ");
+        String dataStr = scanner.nextLine();
+        Date data;
+        try {
+            data = dateFormat.parse(dataStr);
+        } catch (ParseException e) {
+            System.out.println("Data inválida. Use o formato dd/MM/yyyy.");
+            return;
+        }
+
+        String dataFormatada = dateFormat.format(data);
+        Map<String, Integer> atracoesContagem = visitasPorData.get(dataFormatada);
+
+        if (atracoesContagem == null || atracoesContagem.isEmpty()) {
+            System.out.println("Nenhuma visita registrada na data: " + dataFormatada);
+            return;
+        }
+
+        int maxVisitas = Collections.max(atracoesContagem.values());
+        System.out.println("Atrações mais visitadas na data " + dataFormatada + ":");
+        for (Map.Entry<String, Integer> entry : atracoesContagem.entrySet()) {
+            if (entry.getValue() == maxVisitas) {
+                System.out.println("Atração: " + entry.getKey() + " - Visitas: " + entry.getValue());
+            }
+        }
     }
 
     public void atualizarCadastro() {

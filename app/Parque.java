@@ -4,6 +4,7 @@ import dados.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Scanner;
 import java.util.*;
 
 // Representa o sistema de gerenciamento de um parque de diversões.
@@ -15,6 +16,7 @@ public class Parque {
     private SimpleDateFormat dateFormat; // Formato de data para análise e formatação
     private Map<String, Map<String, Integer>> visitasPorData; // Registro de visitas por data e atração
     private List<String> atracoesCadastradas; // Lista de atrações disponíveis no parque
+    private Scanner scanner; // Scanner para entrada de dados
 
     // Construtor padrão para inicializar as estruturas de dados e formatador de data.
 
@@ -26,14 +28,42 @@ public class Parque {
         this.dateFormat.setLenient(false);
         this.visitasPorData = new HashMap<>();
         this.atracoesCadastradas = Arrays.asList(
-            "Montanha-russa",
-            "Roda-gigante",
-            "Carrossel",
-            "Trem-fantasma",
-            "Barca Viking",
-            "Carrinho de bate-bate",
-            "Simuladores de realidade virtual",
-            "Trem de passeio");
+                "Montanha-russa",
+                "Roda-gigante",
+                "Carrossel",
+                "Trem-fantasma",
+                "Barca Viking",
+                "Carrinho de bate-bate",
+                "Simuladores de realidade virtual",
+                "Trem de passeio");
+        this.scanner = new Scanner(System.in);
+
+        // Inicializar com alguns dados prontos
+        inicializarVisitantes();
+    }
+
+    private void inicializarVisitantes() {
+        VisitanteAdulto adulto1 = new VisitanteAdulto("Renato Gaucho", 1980, "9090-9090");
+        VisitanteAdulto adulto2 = new VisitanteAdulto("Robson", 1995, "4321-8765");
+        VisitanteAdulto adulto3 = new VisitanteAdulto("Cleiton", 1969, "3030-3520");
+        VisitanteAdulto adulto4 = new VisitanteAdulto("Roberval", 1914, "2828-3838");
+        VisitanteAdulto adulto5 = new VisitanteAdulto("Messi", 1914, "2828-3838");
+        VisitanteCrianca crianca1 = new VisitanteCrianca("Juninho", 2017, "Dorival Junior", "2222-3333");
+        VisitanteCrianca crianca2 = new VisitanteCrianca("Neymarzinho", 2015, "Renato Gaucho", "1234-5678");
+        VisitanteCrianca crianca3 = new VisitanteCrianca("Martinha", 2020, "Jerimundo", "5628-7568");
+        VisitanteCrianca crianca4 = new VisitanteCrianca("Ronaldinho", 2007, "Tite", "2755-2758");
+        VisitanteCrianca crianca5 = new VisitanteCrianca("Zidaninho", 2009, "Andrea Pirlo", "2858-6675");
+
+        adicionarVisitante(adulto1);
+        adicionarVisitante(adulto2);
+        adicionarVisitante(adulto3);
+        adicionarVisitante(adulto4);
+        adicionarVisitante(adulto5);
+        adicionarVisitante(crianca1);
+        adicionarVisitante(crianca2);
+        adicionarVisitante(crianca3);
+        adicionarVisitante(crianca4);
+        adicionarVisitante(crianca5);
     }
 
     public void cadastrarNovoVisitante() {

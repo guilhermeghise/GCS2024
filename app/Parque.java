@@ -132,7 +132,6 @@ public class Parque {
     }
 
     public void cadastrarNovoVisitante() {
-        Scanner scanner = new Scanner(System.in);
         int tipo;
         do {
             System.out.println("Cadastrar Novo Visitante:");
@@ -141,8 +140,8 @@ public class Parque {
             System.out.println("0. Voltar para o menu");
             System.out.print("Escolha o tipo de visitante: ");
             tipo = scanner.nextInt();
-            scanner.nextLine(); 
-            
+            scanner.nextLine();
+
             switch (tipo) {
                 case 1:
                     cadastrarNovoAdulto();
@@ -152,18 +151,17 @@ public class Parque {
                     break;
                 case 0:
                     System.out.println("Retornando ao menu principal...");
-                    return; 
+                    return;
                 default:
                     System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
             }
         } while (tipo != 0);
     }
-    
+
     private void cadastrarNovoAdulto() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
-    
+
         String dataNascimentoStr;
         Date dataNascimento = null;
         while (dataNascimento == null) {
@@ -175,23 +173,22 @@ public class Parque {
                 System.out.println("Formato de data inválido. Por favor, use o formato dd/MM/yyyy.");
             }
         }
-    
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dataNascimento);
         int anoNascimento = calendar.get(Calendar.YEAR);
-    
+
         System.out.print("Telefone: ");
         String telefone = scanner.nextLine();
         VisitanteAdulto adulto = new VisitanteAdulto(nome, anoNascimento, telefone);
         visitantes.add(adulto);
         System.out.println("Adulto cadastrado com sucesso!");
     }
-    
+
     private void cadastrarNovaCrianca() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
-    
+
         String dataNascimentoStr;
         Date dataNascimento = null;
         while (dataNascimento == null) {
@@ -203,11 +200,11 @@ public class Parque {
                 System.out.println("Formato de data inválido. Por favor, use o formato dd/MM/yyyy.");
             }
         }
-    
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dataNascimento);
         int anoNascimento = calendar.get(Calendar.YEAR);
-    
+
         System.out.print("Nome do Responsável: ");
         String nomeResponsavel = scanner.nextLine();
         System.out.print("Telefone do Responsável: ");
@@ -216,14 +213,14 @@ public class Parque {
         visitantes.add(crianca);
         System.out.println("Criança cadastrada com sucesso!");
     }
-    
+
     public void listarVisitantesCadastrados() {
         System.out.println("\n### Lista de Visitantes Cadastrados ###");
         if (visitantes.isEmpty()) {
             System.out.println("Nenhum visitante cadastrado.");
         } else {
             for (Visitante visitante : visitantes) {
-                String tipoVisitante = (visitante instanceof VisitanteAdulto) ? "ADULTO" : "CRIANÇA";
+                String tipoVisitante = (visitante instanceof VisitanteAdulto) ? "Adulto" : "Criança";
                 System.out.println(tipoVisitante + ": " + visitante);
             }
         }

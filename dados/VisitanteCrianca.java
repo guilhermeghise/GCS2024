@@ -33,9 +33,7 @@ public class VisitanteCrianca extends Visitante {
 
     @Override
     public double calculaIngresso() {
-        if(2024-getAnoNascimento() < 12){
-            return 80.00;
-        }
+        if(2024-getAnoNascimento() < 12) return 80.00;
         return 100.00;
     }
 }

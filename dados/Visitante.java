@@ -31,5 +31,4 @@ public abstract class Visitante {
     }
 
     public abstract double calculaIngresso();
-
 }

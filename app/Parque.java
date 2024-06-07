@@ -70,7 +70,7 @@ public class Parque {
         int opcao;
 
         do {
-            System.out.println("\n### Menu do app.Parque ###");
+            System.out.println("\n===== Menu do Parque =====");
             System.out.println("1. Cadastrar novo visitante.");
             System.out.println("2. Listar visitantes cadastrados.");
             System.out.println("3. Emitir novo ingresso.");

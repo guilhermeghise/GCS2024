@@ -595,7 +595,7 @@ public class Parque {
                 totalCriancas++;
             } else {
                 totalAdultos++;
-            }
+            }ori
         }
 
         double porcentagemCriancas = (totalCriancas / (double) totalVisitantes) * 100.0;

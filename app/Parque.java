@@ -122,6 +122,9 @@ public class Parque {
                 case 11:
                     ingressosDisponiveisPorData();
                     break;
+                case 12: 
+                    calcularPorcentagemVisitantes();
+                    break;
                 case 0:
                     System.out.println("Saindo do sistema...");
                     break;
@@ -537,5 +540,9 @@ public class Parque {
         System.out.println("Data: " + dataFormatada);
         System.out.println("Ingressos emitidos: " + ingressosEmitidos);
         System.out.println("Ingressos disponíveis: " + ingressosDisponiveis);
+    }
+
+    public void calcularPorcentagemVisitantes(){
+
     }
 }

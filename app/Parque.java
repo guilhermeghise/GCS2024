@@ -51,8 +51,8 @@ public class Parque {
         VisitanteCrianca crianca1 = new VisitanteCrianca("Juninho", 2017, "Dorival Junior", "2222-3333");
         VisitanteCrianca crianca2 = new VisitanteCrianca("Neymarzinho", 2015, "Renato Gaucho", "1234-5678");
         VisitanteCrianca crianca3 = new VisitanteCrianca("Martinha", 2020, "Jerimundo", "5628-7568");
-        VisitanteCrianca crianca4 = new VisitanteCrianca("Ronaldinho", 2007, "Tite", "2755-2758");
-        VisitanteCrianca crianca5 = new VisitanteCrianca("Zidaninho", 2009, "Andrea Pirlo", "2858-6675");
+        VisitanteCrianca crianca4 = new VisitanteCrianca("Ronaldinho", 2018, "Tite", "2755-2758");
+        VisitanteCrianca crianca5 = new VisitanteCrianca("Zidaninho", 2019, "Andrea Pirlo", "2858-6675");
 
         adicionarVisitante(adulto1);
         adicionarVisitante(adulto2);
@@ -70,7 +70,7 @@ public class Parque {
         int opcao;
 
         do {
-            System.out.println("\n### Menu do app.Parque ###");
+            System.out.println("\n===== Menu do Parque =====");
             System.out.println("1. Cadastrar novo visitante.");
             System.out.println("2. Listar visitantes cadastrados.");
             System.out.println("3. Emitir novo ingresso.");
@@ -578,18 +578,17 @@ public class Parque {
         System.out.println("Ingressos disponíveis: " + ingressosDisponiveis);
     }
 
-    public void calcularPorcentagemVisitantes(){
+    public void calcularPorcentagemVisitantes() {
         int totalVisitantes = visitantes.size();
         if (totalVisitantes == 0) {
-            System.out.println();
-            System.out.println("Nenhum visitante registrado.");
+            System.out.println("\nNenhum visitante registrado.");
             return;
         }
 
         int totalCriancas = 0;
         int totalAdultos = 0;
         int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
-    
+
         for (Visitante visitante : visitantes) {
             int idade = anoAtual - visitante.getAnoNascimento();
             if (idade < 12) {
@@ -599,8 +598,8 @@ public class Parque {
             }
         }
 
-        double porcentagemCriancas = (totalCriancas / (double) totalVisitantes) * 100;
-        double porcentagemAdultos = (totalAdultos / (double) totalVisitantes) * 100;
+        double porcentagemCriancas = (totalCriancas / (double) totalVisitantes) * 100.0;
+        double porcentagemAdultos = (totalAdultos / (double) totalVisitantes) * 100.0;
 
         System.out.println();
         System.out.printf("Crianças: %.2f%%\n", porcentagemCriancas);

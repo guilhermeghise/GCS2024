@@ -550,5 +550,18 @@ public class Parque {
             System.out.println("Nenhum visitante registrado.");
             return;
         }
+
+        int totalCriancas = 0;
+        int totalAdultos = 0;
+        int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+    
+        for (Visitante visitante : visitantes) {
+            int idade = anoAtual - visitante.getAnoNascimento();
+            if (idade < 12) {
+                totalCriancas++;
+            } else {
+                totalAdultos++;
+            }
+        }
     }
 }

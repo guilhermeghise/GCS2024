@@ -563,5 +563,12 @@ public class Parque {
                 totalAdultos++;
             }
         }
+
+        double porcentagemCriancas = (totalCriancas / (double) totalVisitantes) * 100;
+        double porcentagemAdultos = (totalAdultos / (double) totalVisitantes) * 100;
+
+        System.out.println();
+        System.out.printf("Crianças: %.2f%%\n", porcentagemCriancas);
+        System.out.printf("Adultos: %.2f%%\n", porcentagemAdultos);
     }
 }

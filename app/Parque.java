@@ -71,18 +71,19 @@ public class Parque {
 
         do {
             System.out.println("\n### Menu do app.Parque ###");
-            System.out.println("1. Cadastrar novo visitante");
-            System.out.println("2. Listar visitantes cadastrados");
-            System.out.println("3. Emitir novo ingresso");
-            System.out.println("4. Registrar visita à atração");
-            System.out.println("5. Localizar visitante");
-            System.out.println("6. Consultar faturamento de um mês/ano");
-            System.out.println("7. Consultar atrações mais visitadas em uma data");
-            System.out.println("8. Atualizar Cadastro");
-            System.out.println("9. Excluir Cadastro");
-            System.out.println("10. Consultar visitantes em um período");
-            System.out.println("11. Consultar quantos ingressos tem disponíveis em uma determinada data");
-            System.out.println("0. Sair");
+            System.out.println("1. Cadastrar novo visitante.");
+            System.out.println("2. Listar visitantes cadastrados.");
+            System.out.println("3. Emitir novo ingresso.");
+            System.out.println("4. Registrar visita à atração.");
+            System.out.println("5. Localizar visitante.");
+            System.out.println("6. Consultar faturamento de um mês/ano.");
+            System.out.println("7. Consultar atrações mais visitadas em uma data.");
+            System.out.println("8. Atualizar Cadastro.");
+            System.out.println("9. Excluir Cadastro.");
+            System.out.println("10. Consultar visitantes em um período.");
+            System.out.println("11. Consultar quantos ingressos tem disponíveis em uma determinada data.");
+            System.out.println("12. Consultar a porcentagem de visitantes no parque.");
+            System.out.println("0. Sair.");
 
             System.out.print("\nEscolha uma opção: ");
             opcao = scanner.nextInt();
@@ -543,6 +544,11 @@ public class Parque {
     }
 
     public void calcularPorcentagemVisitantes(){
-
+        int totalVisitantes = visitantes.size();
+        if (totalVisitantes == 0) {
+            System.out.println();
+            System.out.println("Nenhum visitante registrado.");
+            return;
+        }
     }
 }

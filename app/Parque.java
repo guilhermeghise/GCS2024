@@ -106,7 +106,7 @@ public class Parque {
                     localizarVisitantePorNome();
                     break;
                 case 6:
-                    // Método de consultar faturamento (a ser implementado)
+                  consultarFaturamento();
                     break;
                 case 7:
                     consultarAtracoesMaisVisitadas();
@@ -275,6 +275,41 @@ public class Parque {
         Ingresso ingresso = new Ingresso(chave, data, visitante);
         ingressos.add(ingresso);
         System.out.println("Ingresso emitido com sucesso: " + ingresso);
+    }
+
+    public void consultarFaturamento() {
+      System.out.print("Inicio do periodo (dd/MM/yyyy): ");
+      String inicioString = scanner.nextLine();
+      Date inicio;
+
+      try {
+        inicio = dateFormat.parse(inicioString);
+      } catch (ParseException e) {
+        System.out.println("Formato de data inválido.");
+        return;
+      }
+
+      System.out.print("Fim do periodo (dd/MM/yyyy): ");
+      String fimString = scanner.nextLine();
+      Date fim;
+
+      try {
+        fim = dateFormat.parse(fimString);
+      } catch (ParseException e) {
+        System.out.println("Formato de data inválido.");
+        return;
+      }
+
+
+      float faturamentoTotal = 0;
+
+      for (Ingresso ingresso : ingressos) {
+        if(inicio.getTime() >= ingresso.getData().getTime() && ingresso.getData().getTime() <= fim.getTime()) {
+          faturamentoTotal += ingresso.getVisitante().calculaIngresso();
+        };
+      }
+
+      System.out.println("Faturamento total: " + faturamentoTotal);
     }
 
     public Visitante localizarVisitantePorNome() {
